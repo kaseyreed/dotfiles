@@ -30,9 +30,11 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 alias ls='ls --color=auto'
 alias reload='source ~/.zshrc'
 
-export GITHUB_ACCESS_TOKEN=REDACTED
 source /usr/share/nvm/init-nvm.sh
 
+source ~/.secrets
+
+EDITOR=vim
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
@@ -49,4 +51,4 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
 export GOPATH="${HOME}/go"
 export PATH="${PATH}:${GOPATH}/bin"
-export PATH="$HOME/.config/rofi/bin:$PATH"
+export PATH=$HOME/.config/rofi/bin:$PATH
