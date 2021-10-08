@@ -9,7 +9,7 @@ ln -sf  "${CURRENT_DIR}/.zshrc" "${HOME}/.zshrc"
 ln -sf  "${CURRENT_DIR}/.p10k.zsh" "${HOME}/.p10k.zsh"
 
 # Handle autostart of this
-ln -sf  "${CURRENT_DIR}/libinput-gestures.conf" "${HOME}/libinput-gestures.conf"
+ln -sf  "${CURRENT_DIR}/libinput-gestures.conf" "${HOME}/.config/libinput-gestures.conf"
 
 ln -sf "${CURRENT_DIR}/rofi" "${HOME}/.config/rofi"
 ln -sf "${CURRENT_DIR}/terminator" "${HOME}/.config/terminator"
