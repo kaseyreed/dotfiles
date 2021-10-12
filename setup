@@ -18,6 +18,6 @@ mkdir -p "${HOME}/.config/docker"
 ln -sf "${CURRENT_DIR}/docker/daemon.conf" "${HOME}/.config/docker/daemon.conf"
 
 
-ln -sf "${CURRENT_DIR}/sshcofig" "${HOME}/.ssh/config"
+ln -sf "${CURRENT_DIR}/sshconfig" "${HOME}/.ssh/config"
 # TODO: handle keys safely
 
