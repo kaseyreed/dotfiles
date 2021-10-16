@@ -43,8 +43,12 @@ setopt appendhistory
 
 export PATH=/usr/bin:/home/kasey/bin:$PATH
 export DOCKER_HOST=unix:///${XDG_RUNTIME_DIR}/docker.sock
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+
+if type "jenv" > /dev/null; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
+
 
 # To address issues with bswpm and intellij
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
