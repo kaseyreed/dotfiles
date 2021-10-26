@@ -2,22 +2,25 @@
 
 echo "Meow."
 
+IS_MAC=(`uname` == 'Darwin')
 CURRENT_DIR=`pwd`
+
 
 # Should be automeowtic.
 ln -sf  "${CURRENT_DIR}/.zshrc" "${HOME}/.zshrc"
 ln -sf  "${CURRENT_DIR}/.p10k.zsh" "${HOME}/.p10k.zsh"
 
-# Handle autostart of this
-ln -sf  "${CURRENT_DIR}/libinput-gestures.conf" "${HOME}/.config/libinput-gestures.conf"
-
-ln -sf "${CURRENT_DIR}/rofi" "${HOME}/.config/rofi"
-ln -sf "${CURRENT_DIR}/terminator" "${HOME}/.config/terminator"
-
-mkdir -p "${HOME}/.config/docker"
-ln -sf "${CURRENT_DIR}/docker/daemon.conf" "${HOME}/.config/docker/daemon.conf"
-
-
 ln -sf "${CURRENT_DIR}/sshconfig" "${HOME}/.ssh/config"
 # TODO: handle keys safely
+
+
+if [ "$(uname)" = "Linux" ]; then
+    ln -sf  "${CURRENT_DIR}/libinput-gestures.conf" "${HOME}/.config/libinput-gestures.conf"
+
+    ln -sf "${CURRENT_DIR}/rofi" "${HOME}/.config/rofi"
+    ln -sf "${CURRENT_DIR}/terminator" "${HOME}/.config/terminator"
+
+    mkdir -p "${HOME}/.config/docker"
+    ln -sf "${CURRENT_DIR}/docker/daemon.conf" "${HOME}/.config/docker/daemon.conf"
+fi;
 

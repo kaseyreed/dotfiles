@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -27,32 +29,43 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 
 # aliases
-alias ls='ls --color=auto'
+# alias ls='ls --color=auto'
 alias reload='source ~/.zshrc'
+alias gcp='gcloud'
+alias gcp-switch='gcloud config configurations activate'
 
-source /usr/share/nvm/init-nvm.sh
+
 
 source ~/.secrets
 
-EDITOR=vim
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=$HISTSIZE
+export EDITOR=vim
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
 setopt appendhistory
 
-
-export PATH=/usr/bin:/home/kasey/bin:$PATH
-export DOCKER_HOST=unix:///${XDG_RUNTIME_DIR}/docker.sock
+export PATH=/usr/bin:$HOME/bin:$PATH
 
 if type "jenv" > /dev/null; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
 
-
-# To address issues with bswpm and intellij
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
-
 export GOPATH="${HOME}/go"
 export PATH="${PATH}:${GOPATH}/bin"
-export PATH=$HOME/.config/rofi/bin:$PATH
+export PATH="$HOME/binaries:$PATH"
+
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then 
+  source '/opt/google-cloud-sdk/completion.zsh.inc'; 
+fi
+GENIE_AC_ZSH_SETUP_PATH=/Users/kaseyreed/Library/Caches/genie/autocomplete/zsh_setup && test -f $GENIE_AC_ZSH_SETUP_PATH && source $GENIE_AC_ZSH_SETUP_PATH;
+
+
+if [ "$(uname -s)" = "Linux" ]; then 
+  # To address issues with bswpm and intellij
+  # TODO: is this still necessary ...
+  export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+  export PATH=$HOME/.config/rofi/bin:$PATH
+  export DOCKER_HOST=unix:///${XDG_RUNTIME_DIR}/docker.sock
+  source /usr/share/nvm/init-nvm.sh
+fi;

@@ -1,0 +1,27 @@
+###
+### This didn't quite work, requires some weirdness with volumn mounts.
+###
+
+
+# Install hyperkit and minikube
+brew install hyperkit
+brew install minikube
+
+# Install Docker CLI
+brew install docker
+brew install docker-compose
+
+# Start minikube
+minikube start
+
+# Tell Docker CLI to talk to minikube's VM
+eval $(minikube docker-env)
+
+# Save IP to a hostname
+echo "`minikube ip` docker.local" | sudo tee -a /etc/hosts > /dev/null
+
+# Test
+docker run hello-world
+
+# Pause Kubes 
+minikube pause
