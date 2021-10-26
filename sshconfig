@@ -2,10 +2,12 @@ Host github.com
 	HostName github.com
 	User git
 	IdentityFile /home/kasey/.ssh/id_ed25519.github.personal
+	IdentityFile /Users/kaseyreed/.ssh/id_ed25519.github.personal
 	IdentitiesOnly yes
 
 Host workrise.github.com
 	HostName github.com
 	User git
 	IdentityFile /home/kasey/.ssh/id_rsa.github.workrise
+	IdentityFile /Users/kaseyreed/.ssh/id_rsa.github.workrise
         IdentitiesOnly yes
