@@ -69,3 +69,9 @@ if [ "$(uname -s)" = "Linux" ]; then
   export DOCKER_HOST=unix:///${XDG_RUNTIME_DIR}/docker.sock
   source /usr/share/nvm/init-nvm.sh
 fi;
+
+if [ "$(uname -s)" = "Darwin" ]; then 
+  # To address issues with bswpm and intellij
+  # TODO: is this still necessary ...
+  source $HOME/.nvm/nvm.sh
+fi;
