@@ -64,6 +64,7 @@ GENIE_AC_ZSH_SETUP_PATH=/Users/kaseyreed/Library/Caches/genie/autocomplete/zsh_s
 if [ "$(uname -s)" = "Linux" ]; then 
   # To address issues with bswpm and intellij
   # TODO: is this still necessary ...
+  export PATH=$HOME/.config/rofi/bin:$PATH
   export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
   export PATH=$HOME/.config/rofi/bin:$PATH
   export DOCKER_HOST=unix:///${XDG_RUNTIME_DIR}/docker.sock

@@ -6,6 +6,7 @@
     cursor_shape = ibeam
     cursor_color = "#aaaaaa"
     show_titlebar = False
+    scrollback_infinite = True
     use_custom_command = True
     custom_command = /bin/zsh
     use_system_font = False
