@@ -10,7 +10,7 @@ CURRENT_DIR=`pwd`
 ln -sf  "${CURRENT_DIR}/.zshrc" "${HOME}/.zshrc"
 ln -sf  "${CURRENT_DIR}/.p10k.zsh" "${HOME}/.p10k.zsh"
 
-ln -sf "${CURRENT_DIR}/sshconfig" "${HOME}/.ssh/config"
+# ln -sf "${CURRENT_DIR}/sshconfig" "${HOME}/.ssh/config"
 # TODO: handle keys safely
 
 
