@@ -11,7 +11,7 @@ fi
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone git@github.com:zdharma-continuum/zinit.git "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -44,7 +44,7 @@ export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 setopt appendhistory
 
-export PATH=/usr/bin:$HOME/bin:$PATH
+export PATH=/usr/bin:/usr/local/bin:$HOME/bin:$PATH
 
 if type "jenv" > /dev/null; then
   export PATH="$HOME/.jenv/bin:$PATH"
@@ -72,7 +72,9 @@ if [ "$(uname -s)" = "Linux" ]; then
 fi;
 
 if [ "$(uname -s)" = "Darwin" ]; then 
-  # To address issues with bswpm and intellij
-  # TODO: is this still necessary ...
-  source $HOME/.nvm/nvm.sh
+  source $HOME/.cargo/env
+
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi;
