@@ -30,6 +30,8 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -60,7 +62,7 @@ if [[ ! "$SPIN" == "1" ]]; then
     eval "$(jenv init -)"
     fi
 
-
+    eval "$(rbenv init - zsh)"
 
 
     if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then 
