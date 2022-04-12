@@ -49,6 +49,12 @@ export SAVEHIST=$HISTSIZE
 setopt appendhistory
 alias history='history 1'
 
+if [[ "$SPIN" == "1" ]]; then
+    alias do-update='git pull && update'
+    alias do-update-force='git reset --hard HEAD && git pull && update'
+    alias do-dev-stuff='dev style && bin/tapioca dsl'
+fi;
+
 if [[ ! "$SPIN" == "1" ]]; then 
     source ~/.secrets
     export GOPATH="${HOME}/go"
