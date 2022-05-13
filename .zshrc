@@ -53,6 +53,14 @@ if [[ "$SPIN" == "1" ]]; then
     alias do-update='git pull && update'
     alias do-update-force='git reset --hard HEAD && git pull && update'
     alias do-dev-stuff='dev style && bin/tapioca dsl'
+
+    RUBYMINE_VERSION="RubyMine-221.5080.196"
+
+    mkdir -p /home/spin/.cache/JetBrains/RemoteDev/dist
+    curl -L https://download.jetbrains.com/ruby/$RUBYMINE_VERSION.tar.gz --output /tmp/rubymine.tar.gz
+    tar -zxf /tmp/rubymine.tar.gz -C /home/spin/.cache/JetBrains/RemoteDev/dist
+    touch /home/spin/.cache/JetBrains/RemoteDev/dist/$RUBYMINE_VERSION/.expandSucceeded
+
 fi;
 
 if [[ ! "$SPIN" == "1" ]]; then 
