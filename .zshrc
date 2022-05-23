@@ -55,11 +55,15 @@ if [[ "$SPIN" == "1" ]]; then
     alias do-dev-stuff='dev style && bin/tapioca dsl'
 
     RUBYMINE_VERSION="RubyMine-2022.1"
-
-    mkdir -p /home/spin/.cache/JetBrains/RemoteDev/dist
-    curl -L https://download.jetbrains.com/ruby/$RUBYMINE_VERSION.tar.gz --output /tmp/rubymine.tar.gz
-    tar -zxf /tmp/rubymine.tar.gz -C /home/spin/.cache/JetBrains/RemoteDev/dist
-    touch /home/spin/.cache/JetBrains/RemoteDev/dist/$RUBYMINE_VERSION/.expandSucceeded
+    if [[ -f "/home/spin/.cache/JetBrains/RemoteDev/dist/$RUBYMINE_VERSION/.expandSucceeded" ]]; then
+        echo "RubyMine is already installed" > /dev/null
+    else
+        mkdir -p /home/spin/.cache/JetBrains/RemoteDev/dist
+        curl -L https://download.jetbrains.com/ruby/$RUBYMINE_VERSION.tar.gz --output /tmp/rubymine.tar.gz
+        tar -zxf /tmp/rubymine.tar.gz -C /home/spin/.cache/JetBrains/RemoteDev/dist
+        touch /home/spin/.cache/JetBrains/RemoteDev/dist/$RUBYMINE_VERSION/.expandSucceeded
+        rm -fr /tmp/rubymine.tar.gz
+    fi;
 
 fi;
 
