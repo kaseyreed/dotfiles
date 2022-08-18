@@ -5,5 +5,9 @@ alias do-update-force='git reset --hard HEAD && git pull && update'
 alias do-dev-stuff='dev style && bin/tapioca dsl'
 
 function help() {
-  echo "kasey you need help"
+  echo "kasey commands:
+  do-update - pulls repo and runs isospin update
+  do-update-force - forces the above
+  do-dev-stuff - styles and gen's tapioca
+  "
 }
