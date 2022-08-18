@@ -38,6 +38,9 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 # aliases
 # alias ls='ls --color=auto'
+
+source ~/.git-aliases
+
 alias reload='source ~/.zshrc'
 alias gcp='gcloud'
 alias gcp-switch='gcloud config configurations activate'
@@ -50,70 +53,41 @@ setopt appendhistory
 alias history='history 1'
 
 if [[ "$SPIN" == "1" ]]; then
-    alias do-update='git pull && update'
-    alias do-update-force='git reset --hard HEAD && git pull && update'
-    alias do-dev-stuff='dev style && bin/tapioca dsl'
-
-    RUBYMINE_VERSION="RubyMine-2022.1"
-    if [[ -f "/home/spin/.cache/JetBrains/RemoteDev/dist/$RUBYMINE_VERSION/.expandSucceeded" ]]; then
-        echo "RubyMine is already installed" > /dev/null
-    else
-        mkdir -p /home/spin/.cache/JetBrains/RemoteDev/dist
-        curl -L https://download.jetbrains.com/ruby/$RUBYMINE_VERSION.tar.gz --output /tmp/rubymine.tar.gz
-        tar -zxf /tmp/rubymine.tar.gz -C /home/spin/.cache/JetBrains/RemoteDev/dist
-        touch /home/spin/.cache/JetBrains/RemoteDev/dist/$RUBYMINE_VERSION/.expandSucceeded
-        rm -fr /tmp/rubymine.tar.gz
-    fi;
-
+    source ~/.kasey-spin
+    exit 0
 fi;
 
-if [[ ! "$SPIN" == "1" ]]; then 
-    source ~/.secrets
-    export GOPATH="${HOME}/go"
-    export PATH="${PATH}:${GOPATH}/bin"
-    export PATH="$HOME/binaries:$PATH"
 
-    export PATH=/usr/bin:/usr/local/bin:$HOME/bin:/opt/homebrew/bin:$PATH
+source ~/.secrets
+export GOPATH="${HOME}/go"
+export PATH="${PATH}:${GOPATH}/bin"
+export PATH="$HOME/binaries:$PATH"
 
-    if type "jenv" > /dev/null; then
+export PATH=/usr/bin:/usr/local/bin:$HOME/bin:/opt/homebrew/bin:$PATH
+
+if type "jenv" > /dev/null; then
     export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
-    fi
+fi
 
-    eval "$(rbenv init - zsh)"
+eval "$(rbenv init - zsh)"
 
-
-    if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then 
-        source '/opt/google-cloud-sdk/completion.zsh.inc'; 
-    fi
-
-
-    if [ "$(uname -s)" = "Linux" ]; then 
-        # To address issues with bswpm and intellij
-        # TODO: is this still necessary ...
-        export PATH=$HOME/.config/rofi/bin:$PATH
-        export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
-        export PATH=$HOME/.config/rofi/bin:$PATH
-        export DOCKER_HOST=unix:///${XDG_RUNTIME_DIR}/docker.sock
-        source /usr/share/nvm/init-nvm.sh
-    fi;
-
-    if [ "$(uname -s)" = "Darwin" ]; then 
-        source $HOME/.cargo/env
-        
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-        [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-        export PQ_LIB_DIR="$(brew --prefix libpq)/lib"
-
-
-    fi;
-
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '/Users/kasey/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/path.zsh.inc'; fi
-
-    # The next line enables shell command completion for gcloud.
-    if [ -f '/Users/kasey/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/completion.zsh.inc'; fi
-
+if [ "$(uname -s)" = "Linux" ]; then 
+    source /usr/share/nvm/init-nvm.sh
 fi;
+
+if [ "$(uname -s)" = "Darwin" ]; then 
+    source $HOME/.cargo/env
+    
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+    export PQ_LIB_DIR="$(brew --prefix libpq)/lib"
+fi;
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kasey/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kasey/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/completion.zsh.inc'; fi
