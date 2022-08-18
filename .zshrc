@@ -54,40 +54,40 @@ alias history='history 1'
 
 if [[ "$SPIN" == "1" ]]; then
     source ~/.kasey-spin
-    exit 0
 fi;
 
+if [[ ! "$SPIN" == "1" ]]; then
+    source ~/.secrets
+    export GOPATH="${HOME}/go"
+    export PATH="${PATH}:${GOPATH}/bin"
+    export PATH="$HOME/binaries:$PATH"
 
-source ~/.secrets
-export GOPATH="${HOME}/go"
-export PATH="${PATH}:${GOPATH}/bin"
-export PATH="$HOME/binaries:$PATH"
+    export PATH=/usr/bin:/usr/local/bin:$HOME/bin:/opt/homebrew/bin:$PATH
 
-export PATH=/usr/bin:/usr/local/bin:$HOME/bin:/opt/homebrew/bin:$PATH
+    if type "jenv" > /dev/null; then
+        export PATH="$HOME/.jenv/bin:$PATH"
+        eval "$(jenv init -)"
+    fi
 
-if type "jenv" > /dev/null; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
-fi
+    eval "$(rbenv init - zsh)"
 
-eval "$(rbenv init - zsh)"
+    if [ "$(uname -s)" = "Linux" ]; then
+        source /usr/share/nvm/init-nvm.sh
+    fi;
 
-if [ "$(uname -s)" = "Linux" ]; then 
-    source /usr/share/nvm/init-nvm.sh
+    if [ "$(uname -s)" = "Darwin" ]; then 
+        source $HOME/.cargo/env
+        
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+        [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+        export PQ_LIB_DIR="$(brew --prefix libpq)/lib"
+    fi;
+
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/Users/kasey/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/path.zsh.inc'; fi
+
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/Users/kasey/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/completion.zsh.inc'; fi
 fi;
-
-if [ "$(uname -s)" = "Darwin" ]; then 
-    source $HOME/.cargo/env
-    
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-    export PQ_LIB_DIR="$(brew --prefix libpq)/lib"
-fi;
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kasey/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kasey/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/completion.zsh.inc'; fi
