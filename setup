@@ -6,6 +6,7 @@ IS_MAC=(`uname` == 'Darwin')
 CURRENT_DIR=`pwd`
 
 # Should be automeowtic.
+ln -sf "${CURRENT_DIR}/.kasey-spin" "${HOME}/.kasey-spin"
 ln -sf "${CURRENT_DIR}/.git-aliases" "${HOME}/.git-aliases"
 ln -sf "${CURRENT_DIR}/.zshrc" "${HOME}/.zshrc"
 ln -sf "${CURRENT_DIR}/.p10k.zsh" "${HOME}/.p10k.zsh"
