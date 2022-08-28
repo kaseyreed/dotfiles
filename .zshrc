@@ -56,7 +56,7 @@ if [[ "$SPIN" == "1" ]]; then
     source ~/.kasey-spin
 fi;
 
-if [[ ! "$SPIN" == "1" ]]; then
+if [[ ! -f "~/.shopify" ]]; then
     source ~/.secrets
     export GOPATH="${HOME}/go"
     export PATH="${PATH}:${GOPATH}/bin"
