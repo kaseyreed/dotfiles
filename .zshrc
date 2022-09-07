@@ -44,6 +44,7 @@ source ~/.git-aliases
 alias reload='source ~/.zshrc'
 alias gcp='gcloud'
 alias gcp-switch='gcloud config configurations activate'
+alias rhistory='cat ~/.local/share/pry/pry_history'
 
 
 export HISTFILE=~/.zsh_history
