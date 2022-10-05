@@ -3,11 +3,15 @@
 alias do-update='git pull && update'
 alias do-update-force='git reset --hard HEAD && git pull && update'
 alias do-dev-stuff='dev style && bin/tapioca dsl'
+alias do-rebase='git fetch origin master:master && git rebase master'
+alias fix-gem-error='systemctl restart refresh-tokens.target'
 
 function help() {
   echo "kasey commands:
   do-update - pulls repo and runs isospin update
-  do-update-force - forces the above
+  do-update-force - forces the above (use for non dev branches)
   do-dev-stuff - styles and gen's tapioca
+  do-rebase - fetches master:master, rebases on this branch
+  fix-gem-error - addresses 'Retrying fetcher due to error (N/4)'
   "
 }
