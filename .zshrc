@@ -70,14 +70,11 @@ if [[ "$SPIN" != "1" && ! -f "$HOME/.shopify" ]]; then
         eval "$(jenv init -)"
     fi
 
-    eval "$(rbenv init - zsh)"
-
     if [ "$(uname -s)" = "Linux" ]; then
         source /usr/share/nvm/init-nvm.sh
     fi;
 
     if [ "$(uname -s)" = "Darwin" ]; then 
-        source $HOME/.cargo/env
         
         export NVM_DIR="$HOME/.nvm"
         [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
