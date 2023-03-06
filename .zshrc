@@ -45,7 +45,7 @@ alias reload='source ~/.zshrc'
 alias gcp='gcloud'
 alias gcp-switch='gcloud config configurations activate'
 alias rhistory='cat ~/.local/share/pry/pry_history'
-
+alias code='open -a Visual\ Studio\ Code .'
 
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
