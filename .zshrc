@@ -33,6 +33,8 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 
+autoload -U compinit; compinit
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -64,6 +66,11 @@ if [[ "$SPIN" != "1" && ! -f "$HOME/.shopify" ]]; then
     export PATH="$HOME/binaries:$PATH"
 
     export PATH=/usr/bin:/usr/local/bin:$HOME/bin:/opt/homebrew/bin:$PATH
+
+    if type "glab" > /dev/null; then
+        source <(glab completion -s zsh)
+        compdef _glab glab
+    fi
 
     if type "jenv" > /dev/null; then
         export PATH="$HOME/.jenv/bin:$PATH"
