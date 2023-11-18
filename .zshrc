@@ -29,6 +29,9 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
@@ -96,3 +99,5 @@ if [[ "$SPIN" != "1" && ! -f "$HOME/.shopify" ]]; then
     # The next line enables shell command completion for gcloud.
     if [ -f '/Users/kasey/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/completion.zsh.inc'; fi
 fi;
+
+export PATH="$HOME/.local/bin:$PATH"
