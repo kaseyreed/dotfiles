@@ -100,4 +100,6 @@ if [[ "$SPIN" != "1" && ! -f "$HOME/.shopify" ]]; then
     if [ -f '/Users/kasey/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kasey/google-cloud-sdk/completion.zsh.inc'; fi
 fi;
 
+eval "$(pyenv init --path)"
 export PATH="$HOME/.local/bin:$PATH"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
